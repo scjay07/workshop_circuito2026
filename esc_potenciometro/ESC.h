@@ -6,7 +6,8 @@
 
 class ESC {
     private:
-        Servo esc;  // objeto Servo como atributo
+        Servo esc;
+        int pin;
 
     public:
         ESC(int pin);
