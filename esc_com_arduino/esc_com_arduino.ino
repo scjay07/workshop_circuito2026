@@ -1,23 +1,16 @@
-#include <Servo.h>
-Servo ESC;
-int pot;
+#include "ESC.h" 
+
+ESC esc(3);
+int vel;
+
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
-  ESC.attach(3);
-  ESC.write(180);
-  delay(100);
-  ESC.write(0);
-  delay(100);
-  
+  esc.inicializar();
 }
 
 void loop() {
-  if(Serial.available()){
-    pot = Serial.parseInt();
-    if(pot!=0) Serial.println(pot);
+  if(Serial.available()>0){
+    vel = Serial.parseInt();
   }
-  // put your main code here, to run repeatedly:
-ESC.write(pot);
-
+  esc.mandar_velocidade(vel);
 }
